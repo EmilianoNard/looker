@@ -94,6 +94,7 @@ view: fact_venduto_categoria {
 
  measure: vendite_valore {
     type: sum
+    precision:2
     sql: ${TABLE}.vendite_valore ;;
   }
 
