@@ -123,8 +123,7 @@ view: sql_runner_query {
       role,
       career_track,
       level,
-      career_level_number,
-      count_distinct
+      career_level_number
     ]
   }
 }
