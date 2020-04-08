@@ -19,4 +19,7 @@ explore: fact_venduto_categoria {
     sql_on: ${fact_venduto_categoria.cod_negozio}==${negozi.cod_neg_sicma} ;;
     relationship: many_to_one
   }
-}
+  }
+  explore: sql_runner_query {
+
+    }

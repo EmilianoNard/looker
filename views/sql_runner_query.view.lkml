@@ -69,12 +69,12 @@ view: sql_runner_query {
   }
 
   dimension: country {
-    type: location
+    type: string
     sql: ${TABLE}."COUNTRY" ;;
   }
 
   dimension: city {
-    type: location
+    type: string
     sql: ${TABLE}."CITY" ;;
   }
 
