@@ -108,11 +108,7 @@ view: sql_runner_query {
     sql: ${TABLE}."CAREER_LEVEL_NUMBER" ;;
   }
 
-  measure: count_distinct {
-    type: count_distinct
-    approximate_threshold: 100000
-    drill_fields: []
-    }
+
   set: detail {
     fields: [
       employee,
