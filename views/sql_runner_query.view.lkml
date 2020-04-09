@@ -67,14 +67,20 @@ view: sql_runner_query {
     drill_fields: [detail*]
   }
   dimension: EMPLOYEE {
-    primary_key: yes
-    type: number
+     type: number
     sql: ${TABLE}."EMPLOYEE" ;;
   }
 
   dimension: country {
     type: string
     sql: ${TABLE}."COUNTRY" ;;
+  }
+
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: CONCAT(${TABLE}.EMPLOYEE, ' ', ${TABLE}.COUNTRY) ;;
   }
 
   dimension: city {
