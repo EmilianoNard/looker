@@ -66,8 +66,8 @@ view: sql_runner_query {
     type: count_distinct
     drill_fields: [detail*]
   }
-  dimension: employee {
-    type: string
+  measure: employee {
+    type: number
     sql: ${TABLE}."EMPLOYEE" ;;
   }
 
