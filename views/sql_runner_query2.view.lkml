@@ -1,4 +1,4 @@
-view: sql_runner_query {
+view: sql_runner_query2 {
   derived_table: {
     sql: select '1' as Employee, 'India' as Country, 'Bengaluru' as City, 'Software Engineering' as Role_Segment, 'Application Development' as Role_Family, 'Application Development Analyst' as Role, 'Client Delivery & Operations' as Career_Track, 'Analyst' as Level, '11' as Career_Level_number
       union select '2', 'India', 'Bengaluru', 'Software Engineering', 'Application/Cloud Support', 'App/Cloud Support Specialist', 'Client Delivery & Operations', 'Consultant', '9'
@@ -62,10 +62,7 @@ view: sql_runner_query {
     type: count
     drill_fields: [detail*]
   }
-  measure: count_distinct {
-    type: count_distinct
-    drill_fields: [detail*]
-  }
+
   dimension: employee {
     type: string
     sql: ${TABLE}."EMPLOYEE" ;;
@@ -110,7 +107,6 @@ view: sql_runner_query {
     type: string
     sql: ${TABLE}."CAREER_LEVEL_NUMBER" ;;
   }
-
 
   set: detail {
     fields: [
