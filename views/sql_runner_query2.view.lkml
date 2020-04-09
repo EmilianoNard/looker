@@ -1,6 +1,6 @@
 view: sql_runner_query2 {
   derived_table: {
-    sql: select '1' as Employee, 'India' as Country, 'Bengaluru' as City, 'Software Engineering' as Role_Segment, 'Application Development' as Role_Family, 'Application Development Analyst' as Role, 'Client Delivery & Operations' as Career_Track, 'Analyst' as Level, '11' as Career_Level_number
+    sql: select '1' as EMPLOYEE, 'India' as Country, 'Bengaluru' as City, 'Software Engineering' as Role_Segment, 'Application Development' as Role_Family, 'Application Development Analyst' as Role, 'Client Delivery & Operations' as Career_Track, 'Analyst' as Level, '11' as Career_Level_number
       union select '2', 'India', 'Bengaluru', 'Software Engineering', 'Application/Cloud Support', 'App/Cloud Support Specialist', 'Client Delivery & Operations', 'Consultant', '9'
       union select '3', 'India', 'Chennai', 'Software Engineering', 'Test Engineering', 'Test Engineering Senior Analyst', 'Client Delivery & Operations', 'Analyst', '10'
       union select '4', 'India', 'Hyderabad', 'Software Engineering', 'Application Development', 'Application Development Senior Analyst', 'Client Delivery & Operations', 'Analyst', '10'
@@ -62,15 +62,25 @@ view: sql_runner_query2 {
     type: count
     drill_fields: [detail*]
   }
-
-  dimension: employee {
-    type: string
+  measure: count_distinct {
+    type: count_distinct
+    drill_fields: [detail*]
+  }
+  dimension: EMPLOYEE {
+    type: number
     sql: ${TABLE}."EMPLOYEE" ;;
   }
 
   dimension: country {
     type: string
     sql: ${TABLE}."COUNTRY" ;;
+  }
+
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: CONCAT(${TABLE}.EMPLOYEE, ' ', ${TABLE}.COUNTRY) ;;
   }
 
   dimension: city {
@@ -108,9 +118,10 @@ view: sql_runner_query2 {
     sql: ${TABLE}."CAREER_LEVEL_NUMBER" ;;
   }
 
+
   set: detail {
     fields: [
-      employee,
+      EMPLOYEE,
       country,
       city,
       role_segment,
